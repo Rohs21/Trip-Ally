@@ -16,7 +16,7 @@ function App() {
   return (
     <BrowserRouter>
     {/* Navbar placed here to persist across all routes */}
-    <Navbar />
+    {/* <Navbar /> */}
     <Routes>
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
