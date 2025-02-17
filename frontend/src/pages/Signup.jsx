@@ -8,6 +8,7 @@ function Signup() {
     email: '',
     password: '',
   });
+  const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
 
@@ -15,17 +16,26 @@ function Signup() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSignupInfo({ ...SignupInfo, [name]: value });
+    // Clear error message when user starts typing
+    if (errorMessage) setErrorMessage('');
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Password validation
+    if (SignupInfo.password.length < 5) {
+      setErrorMessage('Password should be at least 5 characters long.');
+      return;
+    }
+
     try {
-      const response = await axios.post('/api/signup', SignupInfo);
+      const response = await axios.post('http://localhost:3000/auth/signup', SignupInfo);
       console.log('Signup successful:', response.data);
       navigate('/login');
     } catch (error) {
-      console.error('Signup failed:', error.response?.data || error.message);
+      setErrorMessage(error.response?.data?.message || 'Signup failed. Please try again.');
     }
   };
 
@@ -38,6 +48,13 @@ function Signup() {
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          {/* Error Message Display */}
+          {errorMessage && (
+            <div className="p-3 text-sm text-red-500 bg-red-50 rounded-lg">
+              {errorMessage}
+            </div>
+          )}
+
           <div className="rounded-md shadow-sm -space-y-px">
             {/* Name Input */}
             <div>
