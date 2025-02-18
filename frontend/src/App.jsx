@@ -1,30 +1,40 @@
 import { useState } from 'react'
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Signup from './pages/signup'
 import Login from './pages/login'
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
 
-// import AboutUs from './components/AboutUs'
-// import BookingPage from './components/BookingPage'
-
+// Layout component that includes Navbar
+const LayoutWithNavbar = ({ children }) => {
+  return (
+    <>
+      <Navbar />
+      {children}
+    </>
+  )
+}
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <BrowserRouter>
-    {/* Navbar placed here to persist across all routes */}
-    <Navbar />
-    <Routes>
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/" element={<Home/>} />
-    {/* <Route path="/aboutus" element={<AboutUs />} />
-      <Route path="/book/:tripId" element={<BookingPage />} /> */}
-    </Routes>
-  </BrowserRouter>
+      <Routes>
+        {/* Auth routes without Navbar */}
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Signup />} />
+
+        {/* Routes with Navbar */}
+        <Route path="/home" element={<LayoutWithNavbar><Home /></LayoutWithNavbar>} />
+        
+        {/* When you uncomment these routes, they'll automatically have the Navbar */}
+        {/* <Route path="/aboutus" element={<LayoutWithNavbar><AboutUs /></LayoutWithNavbar>} />
+        <Route path="/book/:tripId" element={<LayoutWithNavbar><BookingPage /></LayoutWithNavbar>} /> */}
+      </Routes>
+    </BrowserRouter>
   )
 }
 

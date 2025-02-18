@@ -1,23 +1,35 @@
 import { useState } from "react"
 import TripAlly from "../assets/images/download.webp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  
+  // Check if user is logged in by looking for token in localStorage
+  const isLoggedIn = localStorage.getItem('token') !== null;
+
+  const handleAuthAction = () => {
+    if (isLoggedIn) {
+      // Clear token and any other user data from localStorage
+      localStorage.removeItem('token');
+      // Redirect to home or login page
+      navigate('/login');
+    } else {
+      // Redirect to signup page
+      navigate('/signup');
+    }
+  };
 
   return (
     <nav className="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {" "}
-          {/* Increased height */}
-          {/* Logo */}
           <div className="flex-shrink-0 flex items-center border border-gray-700 rounded-lg p-2">
-          <img className="h-10 w-auto" src={TripAlly} alt="Logo" /> {/* Slightly larger logo */}
-          <span className="ml-2 text-2xl font-bold text-gray-800">TripAlly</span> {/* Larger text */}
-        </div>
+            <img className="h-10 w-auto" src={TripAlly} alt="Logo" />
+            <span className="ml-2 text-2xl font-bold text-gray-800">TripAlly</span>
+          </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center justify-center flex-1">
             <a href="/home" className="text-gray-800 hover:bg-gray-200 px-4 py-2 rounded-md text-base font-medium">
               Home
@@ -32,13 +44,16 @@ const [isOpen, setIsOpen] = useState(false)
               My Bookings
             </a>
           </div>
-          {/* Sign Up Button */}
+
           <div className="hidden md:block">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-md text-base font-medium">
-              Sign Up
+            <button 
+              onClick={handleAuthAction}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-md text-base font-medium"
+            >
+              {isLoggedIn ? 'Logout' : 'Sign Up'}
             </button>
           </div>
-          {/* Mobile menu button */}
+
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -76,7 +91,6 @@ const [isOpen, setIsOpen] = useState(false)
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden" id="mobile-menu">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -92,8 +106,11 @@ const [isOpen, setIsOpen] = useState(false)
             <a href="#" className="text-gray-800 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium">
               My Bookings
             </a>
-            <button className="mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-base font-medium">
-              Sign Up
+            <button 
+              onClick={handleAuthAction}
+              className="mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-base font-medium"
+            >
+              {isLoggedIn ? 'Logout' : 'Sign Up'}
             </button>
           </div>
         </div>
@@ -103,4 +120,3 @@ const [isOpen, setIsOpen] = useState(false)
 }
 
 export default Navbar
-
