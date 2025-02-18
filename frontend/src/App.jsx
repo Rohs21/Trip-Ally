@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import BookingPage from './pages/BookingPage'
 import AboutUs from './pages/AboutUs'
+import Footer from './components/Footer'
 
 // Layout component that includes Navbar
 const LayoutWithNavbar = ({ children }) => {
@@ -14,6 +15,7 @@ const LayoutWithNavbar = ({ children }) => {
     <>
       <Navbar />
       {children}
+      <Footer/>
     </>
   )
 }
@@ -27,11 +29,11 @@ function App() {
         {/* Auth routes without Navbar */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Signup />} />
+        
 
         {/* Routes with Navbar */}
         <Route path="/home" element={<LayoutWithNavbar><Home /></LayoutWithNavbar>} />
-        
+        <Route path="/" element={<LayoutWithNavbar><Home /></LayoutWithNavbar>} />
         {/* When you uncomment these routes, they'll automatically have the Navbar */}
         <Route path="/aboutus" element={<LayoutWithNavbar><AboutUs /></LayoutWithNavbar>} />
         <Route path="/book/:tripId" element={<LayoutWithNavbar><BookingPage /></LayoutWithNavbar>} /> 
