@@ -5,6 +5,8 @@ import Signup from './pages/signup'
 import Login from './pages/login'
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
+import BookingPage from './pages/BookingPage'
+import AboutUs from './pages/AboutUs'
 
 // Layout component that includes Navbar
 const LayoutWithNavbar = ({ children }) => {
@@ -31,8 +33,8 @@ function App() {
         <Route path="/home" element={<LayoutWithNavbar><Home /></LayoutWithNavbar>} />
         
         {/* When you uncomment these routes, they'll automatically have the Navbar */}
-        {/* <Route path="/aboutus" element={<LayoutWithNavbar><AboutUs /></LayoutWithNavbar>} />
-        <Route path="/book/:tripId" element={<LayoutWithNavbar><BookingPage /></LayoutWithNavbar>} /> */}
+        <Route path="/aboutus" element={<LayoutWithNavbar><AboutUs /></LayoutWithNavbar>} />
+        <Route path="/book/:tripId" element={<LayoutWithNavbar><BookingPage /></LayoutWithNavbar>} /> 
       </Routes>
     </BrowserRouter>
   )
