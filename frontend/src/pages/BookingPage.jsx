@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Plus, Minus, Calendar, MapPin, Clock, Star, Users } from "lucide-react";
+import axios from "axios";
 import beach from "../assets/images/beach.webp";
 import city from "../assets/images/city.webp";
 import mountain from "../assets/images/mountain.webp";
 import safari from "../assets/images/safari.webp";
 
 const tripData = {
+  // ... tripData remains the same as in your original code
   "paradise-beach": {
     title: "Paradise Beach Retreat",
     subtitle: "Maldives",
@@ -25,7 +27,7 @@ const tripData = {
     features: ["5-star accommodation", "All meals included", "Beach activities", "Spa access"],
     image: beach
   },
-  "mountain-adventure": {
+ "mountain-adventure": {
     title: "Mountain Adventure",
     subtitle: "Swiss Alps",
     basePrice: 1299,
@@ -83,8 +85,12 @@ const tripData = {
 
 export default function BookingPage() {
   const { tripId } = useParams();
+  const navigate = useNavigate();
   const [date, setDate] = useState("");
   const [persons, setPersons] = useState(2);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  
   const trip = tripData[tripId];
   const totalCost = trip.basePrice * persons;
 
@@ -95,19 +101,61 @@ export default function BookingPage() {
     }
   };
 
-  const handleBooking = (e) => {
+  const handleBooking = async (e) => {
     e.preventDefault();
-    alert(`Booking confirmed!\nTrip: ${trip.title}\nDate: ${date}\nPersons: ${persons}\nTotal Cost: $${totalCost}`);
-  };
+    setIsLoading(true);
+    setError(null);
 
+    try {
+        const token = localStorage.getItem('token');  // Retrieve token from local storage
+        if (!token) {
+            throw new Error('User not authenticated. Please log in.');
+        }
+
+        const bookingData = {
+            tripId,
+            tripName: trip.title,
+            tripLocation: trip.subtitle,
+            travelDate: date,
+            persons,
+            totalCost,
+            tripImage: trip.image
+        };
+
+        const response = await axios.post(
+            'http://localhost:3000/api/bookings',
+            bookingData,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json' // Ensure JSON data format
+                }
+            }
+        );
+
+        console.log('Booking Response:', response.data);
+
+        alert(`Booking confirmed!\nTrip: ${trip.title}\nDate: ${date}\nPersons: ${persons}\nTotal Cost: $${totalCost}`);
+
+        navigate('/my-bookings');
+    } catch (error) {
+        console.error('Booking error:', error);
+        setError(error.response?.data?.message || 'Failed to create booking. Please try again.');
+    } finally {
+        setIsLoading(false);
+    }
+};
+
+  // Rest of the component remains largely the same
   return (
     <div className="mt-20 min-h-screen bg-gradient-to-b from-blue-50 to-white">
-
+      {/* ... existing UI code ... */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="grid lg:grid-cols-2 gap-0">
             {/* Left Column - Image and Overview */}
             <div className="relative h-[600px] lg:h-auto">
+              {/* ... existing code ... */}
               <div className="absolute inset-0 bg-black/40 z-10" />
               <img
                 src={trip.image}
@@ -115,24 +163,7 @@ export default function BookingPage() {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-x-0 bottom-0 z-20 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-2 text-white/80">
-                    <MapPin size={16} />
-                    <span>{trip.subtitle}</span>
-                  </div>
-                  <h1 className="text-4xl font-bold text-white">{trip.title}</h1>
-                  <div className="flex items-center space-x-4 text-white">
-                    <div className="flex items-center">
-                      <Star className="text-yellow-400" size={16} />
-                      <span className="ml-1">{trip.rating}</span>
-                      <span className="ml-1 text-white/60">({trip.reviews} reviews)</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Clock size={16} />
-                      <span className="ml-1">{trip.duration}</span>
-                    </div>
-                  </div>
-                </div>
+                {/* ... existing code ... */}
               </div>
             </div>
 
@@ -154,6 +185,12 @@ export default function BookingPage() {
 
                 {/* Booking Form */}
                 <form onSubmit={handleBooking} className="space-y-6">
+                  {error && (
+                    <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg">
+                      {error}
+                    </div>
+                  )}
+                  
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Travel Date</label>
@@ -210,9 +247,10 @@ export default function BookingPage() {
 
                   <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white py-4 px-6 rounded-xl font-semibold hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    disabled={isLoading}
+                    className="w-full bg-blue-600 text-white py-4 px-6 rounded-xl font-semibold hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-blue-300"
                   >
-                    Book Your Adventure
+                    {isLoading ? 'Processing...' : 'Book Your Adventure'}
                   </button>
                 </form>
               </div>

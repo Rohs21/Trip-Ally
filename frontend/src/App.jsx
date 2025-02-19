@@ -8,6 +8,7 @@ import Navbar from './components/Navbar'
 import BookingPage from './pages/BookingPage'
 import AboutUs from './pages/AboutUs'
 import Footer from './components/Footer'
+import MyBookings from './pages/MyBookings'
 
 // Layout component that includes Navbar
 const LayoutWithNavbar = ({ children }) => {
@@ -37,6 +38,7 @@ function App() {
         {/* When you uncomment these routes, they'll automatically have the Navbar */}
         <Route path="/aboutus" element={<LayoutWithNavbar><AboutUs /></LayoutWithNavbar>} />
         <Route path="/book/:tripId" element={<LayoutWithNavbar><BookingPage /></LayoutWithNavbar>} /> 
+        <Route path="/my-bookings" element={<LayoutWithNavbar><MyBookings /></LayoutWithNavbar>} />
       </Routes>
     </BrowserRouter>
   )

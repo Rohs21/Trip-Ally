@@ -30,7 +30,7 @@ const Navbar = () => {
 
   const navLinks = [
     { title: "Home", href: "/home" },
-    { title: "Discover Trips", href: "/trips" },
+    { title: "Discover Trips", href: "/home#trips" },
     { title: "About Us", href: "/aboutus" },
     { title: "Contact Us", href: "/contact" }
   ];
@@ -88,7 +88,7 @@ const Navbar = () => {
                 {isDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border border-gray-100">
                     <a href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Profile</a>
-                    <a href="/bookings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">My Bookings</a>
+                    <a href="/my-bookings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">My Bookings</a>
                     <hr className="my-2" />
                     <button
                       onClick={handleAuthAction}
@@ -159,7 +159,7 @@ const Navbar = () => {
               <a href="/profile" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md">
                 Profile
               </a>
-              <a href="/bookings" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md">
+              <a href="/my-bookings" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md">
                 My Bookings
               </a>
               <button
