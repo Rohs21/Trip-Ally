@@ -8,7 +8,7 @@ import mountain from "../assets/images/mountain.webp";
 import safari from "../assets/images/safari.webp";
 
 const tripData = {
-  // ... tripData remains the same as in your original code
+ 
   "paradise-beach": {
     title: "Paradise Beach Retreat",
     subtitle: "Maldives",
