@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Calendar, MapPin, Users, Clock, ArrowRight, Loader2 } from "lucide-react";
 import axios from "axios";
+import { HashLink } from 'react-router-hash-link';
+
 
 export default function MyBookings() {
   const [bookings, setBookings] = useState([]);
@@ -60,14 +62,15 @@ export default function MyBookings() {
           <div className="text-center py-16 bg-white rounded-xl shadow-sm">
             <h3 className="text-xl font-medium text-gray-700 mb-4">No bookings found</h3>
             <p className="text-gray-500 mb-6">You haven't made any travel bookings yet.</p>
-            <Link 
-              to="/trips" 
+            <HashLink 
+              smooth
+              to="/home#trips" 
               className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
               Explore Trips
               <ArrowRight size={16} className="ml-2" />
-            </Link>
-          </div>
+            </HashLink>
+        </div>
         ) : (
           <div className="space-y-6">
             {bookings.map((booking) => (
@@ -144,7 +147,7 @@ export default function MyBookings() {
                               try {
                                 const token = localStorage.getItem('token');
                                 await axios.patch(
-                                  `/api/bookings/${booking._id}`,
+                                  `http://localhost:3000/api/bookings/${booking._id}`,
                                   { action: 'delete' }, 
                                   { headers: { Authorization: `Bearer ${token}` } }
                                 );

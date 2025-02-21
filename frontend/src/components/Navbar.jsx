@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, User } from "lucide-react";
 import TripAlly from "../assets/images/download.webp";
+import { HashLink } from 'react-router-hash-link';
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
