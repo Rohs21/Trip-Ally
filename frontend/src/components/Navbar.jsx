@@ -30,7 +30,7 @@ const Navbar = () => {
 
   const navLinks = [
     { title: "Home", href: "/home" },
-    { title: "Discover Trips", href: "/home#trips" },
+    { title: "Discover Trips", href: "/home/trips" },
     { title: "About Us", href: "/aboutus" },
     { title: "Contact Us", href: "/contact" }
   ];
@@ -156,9 +156,7 @@ const Navbar = () => {
           
           {isLoggedIn ? (
             <>
-              <a href="/profile" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md">
-                Profile
-              </a>
+              
               <a href="/my-bookings" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md">
                 My Bookings
               </a>
