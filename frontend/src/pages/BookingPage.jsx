@@ -140,7 +140,7 @@ export default function BookingPage() {
         navigate('/my-bookings');
     } catch (error) {
         console.error('Booking error:', error);
-        setError(error.response?.data?.message || 'Failed to create booking. Please try again.');
+        setError(error.response?.data?.message || 'Failed to create booking. Please Login.');
     } finally {
         setIsLoading(false);
     }

@@ -51,7 +51,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {['About Us', 'Services', 'Destinations', 'Packages', 'Travel Blog', 'Contact Us'].map((item) => (
+              {['Home', 'Discover Trips', 'About Us', 'Contact Us', 'My Bookings'].map((item) => (
                 <li key={item}>
                   <a href="#" className="text-sm hover:text-white transition-colors duration-300 flex items-center">
                     <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>

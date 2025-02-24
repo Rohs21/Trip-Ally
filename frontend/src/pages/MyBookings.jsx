@@ -133,12 +133,12 @@ export default function MyBookings() {
                     </div>
 
                     <div className="mt-6 flex justify-end space-x-3">
-                      <Link 
+                      {/* <Link 
                         to={`/bookings/${booking._id}`}
                         className="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                       >
                         View Details
-                      </Link>
+                      </Link> */}
                       {booking.status !== 'cancelled' && (
                         <button
                           className="px-4 py-2 text-sm font-medium text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"

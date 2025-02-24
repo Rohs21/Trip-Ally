@@ -9,6 +9,7 @@ import BookingPage from './pages/BookingPage'
 import AboutUs from './pages/AboutUs'
 import Footer from './components/Footer'
 import MyBookings from './pages/MyBookings'
+import ContactUs from './pages/ContactUs'
 
 // Layout component that includes Navbar
 const LayoutWithNavbar = ({ children }) => {
@@ -39,6 +40,8 @@ function App() {
         <Route path="/aboutus" element={<LayoutWithNavbar><AboutUs /></LayoutWithNavbar>} />
         <Route path="/book/:tripId" element={<LayoutWithNavbar><BookingPage /></LayoutWithNavbar>} /> 
         <Route path="/my-bookings" element={<LayoutWithNavbar><MyBookings /></LayoutWithNavbar>} />
+        <Route path="/contact-us" element={<LayoutWithNavbar><ContactUs /></LayoutWithNavbar>} />
+
       </Routes>
     </BrowserRouter>
   )
