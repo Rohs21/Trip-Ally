@@ -8,6 +8,9 @@ function Home() {
     <div>
       <Hero/>
       <Features/>
+      <div id="trip">
+        <Trips/>
+      </div>
       <Trips/>
     </div>
   )

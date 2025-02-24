@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, User } from "lucide-react";
 import TripAlly from "../assets/images/download.webp";
-import { HashLink } from 'react-router-hash-link';
 
+import { HashLink } from 'react-router-hash-link';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,15 +32,14 @@ const Navbar = () => {
 
   const navLinks = [
     { title: "Home", href: "/home" },
-    { title: "Discover Trips", href: "/home#trips" },
+    { title: "Discover Trips", href: "/home#trip" },
     { title: "About Us", href: "/aboutus" },
     { title: "Contact Us", href: "/contact-us" }
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
-    }`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${ isScrolled ? 'bg-white shadow-lg' : 'bg-transparent' }`}>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -60,13 +59,24 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
-                key={link.title}
-                href={link.href}
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
-              >
-                {link.title}
-              </a>
+              link.title === "Discover Trips" ? (
+                <HashLink
+                  key={link.title}
+                  smooth
+                  to={link.href}
+                  className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                >
+                  {link.title}
+                </HashLink>
+              ) : (
+                <a
+                  key={link.title}
+                  href={link.href}
+                  className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                >
+                  {link.title}
+                </a>
+              )
             ))}
           </div>
 
@@ -130,9 +140,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'h-auto opacity-100' : 'h-0 opacity-0'
-        }`}
+        className={`md:hidden transition-all duration-300 ease-in-out ${ isOpen ? 'h-auto opacity-100' : 'h-0 opacity-0' }`}
       >
         <div className="px-4 pt-2 pb-3 space-y-1 bg-white shadow-lg">
           {isLoggedIn && (
@@ -147,18 +155,28 @@ const Navbar = () => {
           )}
           
           {navLinks.map((link) => (
-            <a
-              key={link.title}
-              href={link.href}
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
-            >
-              {link.title}
-            </a>
+            link.title === "Discover Trips" ? (
+              <HashLink
+                key={link.title}
+                smooth
+                to={link.href}
+                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+              >
+                {link.title}
+              </HashLink>
+            ) : (
+              <a
+                key={link.title}
+                href={link.href}
+                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+              >
+                {link.title}
+              </a>
+            )
           ))}
           
           {isLoggedIn ? (
             <>
-              
               <a href="/my-bookings" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md">
                 My Bookings
               </a>
