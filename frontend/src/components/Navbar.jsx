@@ -64,7 +64,7 @@ const Navbar = () => {
                   key={link.title}
                   smooth
                   to={link.href}
-                  className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  className="text-black-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
                 >
                   {link.title}
                 </HashLink>
@@ -72,7 +72,7 @@ const Navbar = () => {
                 <a
                   key={link.title}
                   href={link.href}
-                  className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  className="text-black-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
                 >
                   {link.title}
                 </a>
@@ -113,7 +113,7 @@ const Navbar = () => {
               </div>
             ) : (
               <>
-                <a href="/login" className="text-gray-700 hover:text-blue-600 font-medium">
+                <a href="/login" className="text-black-700 hover:text-blue-600 font-medium">
                   Sign In
                 </a>
                 <button
