@@ -11,7 +11,6 @@ function Home() {
       <div id="trip">
         <Trips/>
       </div>
-      <Trips/>
     </div>
   )
 }
