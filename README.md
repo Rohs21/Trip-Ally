@@ -29,7 +29,7 @@ Trip-Ally
 ```
 
 ## 🎥 Live Demo
-[Check out the UI](https://trip-ally.vercel.app)
+[Check out the UI](https://trip-ally.vercel.app) https://trip-ally.vercel.app
 
 ## 📂 Project Setup
 
@@ -73,4 +73,4 @@ npm run dev
 Feel free to contribute! Fork the repository, make your changes, and submit a PR. 🎉
 
 ## 📧 Contact
-For queries or collaborations, reach out at: mailto:your-rohans212004@gmail.com
+For queries or collaborations, reach out at: mailto:rohans212004@gmail.com
