@@ -29,7 +29,7 @@ Trip-Ally
 ```
 
 ## 🎥 Live Demo
-[Check out the UI](https://trip-ally.vercel.app) https://trip-ally.vercel.app
+Check out the UI here: https://trip-ally.vercel.app
 
 ## 📂 Project Setup
 
