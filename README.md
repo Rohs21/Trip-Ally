@@ -11,6 +11,13 @@ TripAlly is a travel companion web application built using the **MERN (MongoDB, 
 - **Community & Reviews**: Users can share their travel experiences and leave reviews.
 - **Responsive UI**: A modern, mobile-friendly interface designed with React and Tailwind CSS.
 
+# Screenshot :
+![Home](./images/Home.png)
+![Trips](./images/trips.png)
+![AboutUs](./images/AboutUs.png)
+![Bookings](./images/Bookings.png)
+![All Bookings](./images/FinalBookings.png)
+![COntact-Us](./images/BookingPage.png)
 
 ## 🛠 Tech Stack
 
